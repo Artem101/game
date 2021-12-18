@@ -29,7 +29,7 @@ def process_positions(player_id, key_ids):
 
     global speed
 
-    x = data['players_data'][player_id]["x"]
+    # x = data['players_data'][player_id]["x"]
     y = data['players_data'][player_id]["y"]
 
     for key_id in key_ids:
@@ -37,23 +37,21 @@ def process_positions(player_id, key_ids):
             y -= speed
         elif key_id == 1:
             y +=speed
-        elif key_id == 2:
-            x -= speed
-        elif key_id == 3:
-            x += speed
+        # elif key_id == 2:
+        #     x -= speed
+        # elif key_id == 3:
+        #     x += speed
 
-    if x >= 800:
-        x = 800
+    # if x >= 800:
+    #     x = 800
     if y >= 600:
         y = 600
-    if x < 0:
-        x = 0
+    # if x < 0:
+    #     x = 0
     if y < 0:
         y = 0
 
-
-
-    data['players_data'][player_id]["x"] = x
+    # data['players_data'][player_id]["x"] = x
     data['players_data'][player_id]["y"] = y
 
 

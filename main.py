@@ -5,7 +5,7 @@ import socket
 
 player_id = input('id: ')
 sock = socket.socket()
-sock.connect(('127.0.0.1', 5555))
+sock.connect(('192.168.43.66', 5555))
 
 # colors
 RED = (255, 0, 0)
@@ -19,6 +19,9 @@ GREEN = (0, 255, 0)
 display_width = 800
 display_height = 600
 
+paddle_width = 40
+paddle_height = 100
+
 # Lets pygame know what window to draw things too
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 # initalize clock for FPS
@@ -27,17 +30,11 @@ clock = pygame.time.Clock()
 global message
 
 
-# draw paddles on screen
-def draw_paddles(x, y, p):
-    if p == 1:
-        pygame.draw.rect(gameDisplay, RED, [x, y, 10, 60])
-    if p == 2:
-        pygame.draw.rect(gameDisplay, BLUE, [x, y, 10, 60])
-
-
-# draw ball on screen
-def draw_ball(x, y):
-    pygame.draw.circle(gameDisplay, BLACK, [int(x), int(y)], 10)
+def draw_paddle(x, y, p):
+    if p == "1":
+        pygame.draw.rect(gameDisplay, RED, [x, y, paddle_width, paddle_height])
+    if p == "2":
+        pygame.draw.rect(gameDisplay, BLUE, [x, y, paddle_width, paddle_height])
 
 
 def recieve_data():
@@ -78,7 +75,7 @@ def main():
         # draw background
         gameDisplay.fill(WHITE)
         for p_id in data['players_data'].keys():
-            draw_ball(data['players_data'][p_id]["x"], data['players_data'][p_id]["y"])
+            draw_paddle(data['players_data'][p_id]["x"], data['players_data'][p_id]["y"], p_id)
 
         pygame.display.update()
 
