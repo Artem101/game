@@ -15,7 +15,7 @@ pygame.init()
 # data = pickle.loads(data)
 
 # Lets pygame know what window to draw things too
-gameDisplay = pygame.display.set_mode((600, 800))
+gameDisplay = pygame.display.set_mode((800, 800))
 # initalize clock for FPS
 clock = pygame.time.Clock()
 
@@ -24,7 +24,7 @@ global message
 
 # main game loop
 def main():
-    car = caar.Car('red_car.png', (10, 20))
+    car = caar.Car('red_car.png', 10, 20)
     car_group = pygame.sprite.RenderPlain(car)
 
     game_finished = False
@@ -48,15 +48,17 @@ def main():
 
         keys = pygame.key.get_pressed()
 
-        # if keys[pygame.K_w]:
-        #     car.position[1] -= 3
-        # elif keys[pygame.K_s]:
-        #     car.position[0] += 3
-        #
-        # if keys[pygame.K_d]:
-        #     car.position[1] += 3
-        # elif keys[pygame.K_a]:
-        #     car.position[0] -= 3
+        if keys[pygame.K_w]:
+            car.set_position(car.position[0], car.position[1] - 5)
+
+        elif keys[pygame.K_s]:
+            car.set_position(car.position[0], car.position[1] + 5)
+
+        if keys[pygame.K_d]:
+            car.k_right = True
+        elif keys[pygame.K_a]:
+            car.k_left = True
+        car_group.update()
 
 
 while True:
